@@ -193,7 +193,7 @@ button:focus {
 	transition: 0.1s all;
 }
 
-#frm #submit:hover {
+#frm #submit:hover, #frm #submit:focus {
 	box-shadow: 0 0 8px #000;
 }
 
