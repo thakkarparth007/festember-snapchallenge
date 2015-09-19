@@ -42,11 +42,7 @@ var upload = multer({
 		}
 		// college can be anything.
 		if (errors.name || errors.contact || !/^image\//.test(file.mimetype)) {
-			cb({
-				config: config,
-				session: req.session, 
-				errors: errors
-			});	
+			cb(errors);	
 		}
 		else {
 			cb(null, true);
@@ -66,9 +62,8 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
 	upload(req, res, function(err) {
 		if(!req.file) {
-			err = {
-				pic: 'Please upload a valid image, smaller than ' + config.uploadLimit / 1024 / 1024 + ' MB'
-			}
+			err = err || {};
+			err.pic = 'Please upload a valid image, smaller than ' + config.uploadLimit / 1024 / 1024 + ' MB';
 		}
 
 		if(err) {
