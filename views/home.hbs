@@ -139,7 +139,7 @@
 				</fieldset>
 
 				<fieldset>
-					<label for="pic"></label>
+					<label for="pic">Pick a pic</label>
 					<input type="file" name="pic" id="pic" accept="image/*">
 					<span class="error">{{errors.pic}}</span>
 				</fieldset>
@@ -165,6 +165,11 @@
 				return false;
 			}
 		}, false);
+
+		var done = {{ done }};
+		if(done) {
+			alert("Thanks for uploading!");
+		}
 	</script>
 </body>
 </html>

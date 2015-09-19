@@ -58,7 +58,8 @@ var upload = multer({
 router.get('/', function(req, res, next) {
 	res.render('home', {
 		config: config,
-		session: req.session
+		session: req.session,
+		done: false
 	});
 });
 
@@ -74,11 +75,17 @@ router.post('/', function(req, res, next) {
 			res.render('home', {
 				config: config,
 				session: req.session, 
-				errors: err
+				errors: err,
+				done: false
 			});
 		}
 		else {
-			res.render('done');
+			res.render('home', {
+				config: config,
+				session: req.session, 
+				errors: err,
+				done: true
+			});
 
 			db_connect.reuse(function(db) {
 				db.collection('uploads').insertOne({

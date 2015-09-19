@@ -209,6 +209,11 @@ u {
 .rules {
 	display: none;
 }
+
+label::after {
+	color: red;
+	content: "*";
+}
 /*
 @media (max-width: 1015px) {
 	body {
