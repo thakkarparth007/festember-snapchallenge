@@ -37,11 +37,14 @@ var upload = multer({
 		if(!/^\d{10}$/.test(req.body.contact)) {
 			errors.contact = 'Please enter a valid 10 digit mobile number';
 		}
+		if(req.body.caption.length > 30) {
+			error.caption = 'Caption cannot be longer than 30 characters';
+		}
 		if(!/^image\//.test(file.mimetype)) {
 			errors.pic = 'Please upload a valid image, smaller than ' + config.uploadLimit / 1024 / 1024 + ' MB';
 		}
 		// college can be anything.
-		if (errors.name || errors.contact || !/^image\//.test(file.mimetype)) {
+		if (errors.name || errors.contact || errors.caption || !/^image\//.test(file.mimetype)) {
 			cb(errors);	
 		}
 		else {
